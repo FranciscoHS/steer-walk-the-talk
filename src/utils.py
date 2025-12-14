@@ -2,9 +2,7 @@ import re
 
 from my_datasets.bbq import BBQDataset
 from my_datasets.medqa import MedQADataset
-from language_models.chat_gpt import ChatGPT
 from language_models.claude import Claude
-from language_models.completion_gpt import CompletionGPT
 
 
 ####################################################################################################
@@ -149,11 +147,7 @@ def enumerate_interventions(factors, factor_settings, k_hop=None, include_no_int
 ####################################################################################################
 
 def get_language_model(model_name, max_tokens=256, temperature=0.7):
-    if 'gpt-4' in model_name or model_name == "gpt-3.5-turbo-0613":
-        return ChatGPT(model_name, temperature=temperature)
-    elif model_name == 'text-davinci-003' or model_name == 'gpt-3.5-turbo-instruct':
-        return CompletionGPT(model_name, max_tokens=max_tokens, temperature=temperature)
-    elif 'claude'in model_name:
+    if 'claude'in model_name:
         return Claude(model_name, max_tokens=max_tokens, temperature=temperature)
     else:
         raise ValueError(f"Model {model_name} not supported.")

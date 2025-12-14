@@ -14,7 +14,7 @@ def parse_args():
     parser.add_argument('--example_idxs', type=int, nargs='+', default=[], help='indices of examples to analyze. If empty, all examples will be analyzed')
     parser.add_argument('--example_idx_start', type=int, default=0, help='index of first example to analyze (if example_idxs not specified, and all examples are to be analyzed)')
     parser.add_argument('--n_examples', type=int, help='number of examples to analyze (if example_idxs not specified)')
-    parser.add_argument('--intervention_model', type=str, default='gpt-4o', help='name of model to use to generate counterfactuals data')
+    parser.add_argument('--intervention_model', type=str, default='claude-sonnet-4-5-20250929', help='name of model to use to generate counterfactuals data')
     parser.add_argument('--intervention_model_max_tokens', type=int, default=256, help='max tokens for LLM-based counterfactual generation model. Only relevant for completion GPT (since default max tokens is inf for Chat GPT).')
     parser.add_argument('--intervention_model_temperature', type=float, default=0, help='temperature for language model used for counterfactual example generation steps')
     parser.add_argument('--concept_id_only', action='store_true', help='whether to only run concept ID step (no concept values ID or counterfactual generation)')

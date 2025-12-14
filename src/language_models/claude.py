@@ -8,21 +8,10 @@ from language_models.model import Model
 from language_models.utils import add_retries, limiter
 
 # set anthropic config
-apikey = None
-ANTRHOPIC_CONFIG_PATH = "[INSERT YOUR PATH HERE]"
-if os.path.exists(ANTRHOPIC_CONFIG_PATH):
-    with open(ANTRHOPIC_CONFIG_PATH, 'r') as f:
-        anthropic_config = json.load(f)
-    apikey = anthropic_config["ANTHROPIC_API_KEY"]
-    # set as enviornment variable
-    os.environ["ANTHROPIC_API_KEY"] = apikey
-else:
-    print(f"WARNING: Did not find anthropic config at {ANTRHOPIC_CONFIG_PATH}")
-    print("Won't be able to use open anthropic models.")
-
+api_key = os.environ.get("ANTHROPIC_API_KEY")
 
 class Claude(Model):
-    def __init__(self, name, max_tokens=256, temperature=0.7):
+    def __init__(self, name="claude-sonnet-4-5-20250929", max_tokens=256, temperature=0.7):
         """
         Args:
             name: name of the model
